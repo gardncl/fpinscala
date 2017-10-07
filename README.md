@@ -33,7 +33,7 @@ working through the book.
 
 Chapter descriptions:
 
-* [ ] Chapter 2: gettingstarted
+* [x] Chapter 2: gettingstarted
 * [ ] Chapter 3: datastructures
 * [ ] Chapter 4: errorhandling
 * [ ] Chapter 5: laziness
