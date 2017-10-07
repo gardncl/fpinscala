@@ -151,15 +151,15 @@ object PolymorphicFunctions {
   // an `Array[A]` is sorted
   def isSorted[A](as: Array[A], gt: (A,A) => Boolean): Boolean = {
     @annotation.tailrec
-    def go(i: Int, j: Int): Boolean = {
+    def go(i: Int): Boolean = {
       as match {
-        case array if array.length > j => true
-        case array if gt(array(i),array(j)) => false
-        case _ => go(j, j+1)
+        case array if array.length - 1 >= i => true
+        case array if gt(array(i),array(i+1)) => false
+        case _ => go(i+1)
       }
     }
 
-    go(0,1)
+    go(0)
   }
 
   // Polymorphic functions are often so constrained by their type
