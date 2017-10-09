@@ -91,9 +91,16 @@ object List { // `List` companion object. Contains functions for creating and wo
     }
   }
 
-  def length[A](l: List[A]): Int = ???
+  def length[A](l: List[A]): Int = foldRight(l, 0)((_,b) => b + 1)
 
-  def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = ???
+  @annotation.tailrec
+  def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = {
+    l match {
+      case Nil => z
+      case Cons(_, tail) if tail == Nil => z
+      case Cons(h, tail) => foldLeft(tail, f(z,h))(f)
+    }
+  }
 
   def map[A,B](l: List[A])(f: A => B): List[B] = ???
 
@@ -106,7 +113,9 @@ object Runner {
 
     //EXERCISE 3.9
     val list = List(1,2,3,4,5)
-    val length = foldRight(list, 0)((_,b) => b + 1)
-    println(length)
+    println(List.length(list))
+    println(List.foldLeft(list, 0)((_,b) => b + 1))
+
+
   }
 }
