@@ -1,5 +1,7 @@
 package fpinscala.datastructures
 
+import fpinscala.datastructures.List.foldRight
+
 sealed trait List[+A] // `List` data type, parameterized on a type, `A`
 case object Nil extends List[Nothing] // A `List` data constructor representing the empty list
 /* Another data constructor, representing nonempty lists. Note that `tail` is another `List[A]`,
@@ -94,4 +96,17 @@ object List { // `List` companion object. Contains functions for creating and wo
   def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = ???
 
   def map[A,B](l: List[A])(f: A => B): List[B] = ???
+
+}
+
+object Runner {
+  def main(args: Array[String]): Unit = {
+    //EXERCISE 3.8
+    println(foldRight(List(1,2,3), Nil:List[Int])(Cons(_,_)))
+
+    //EXERCISE 3.9
+    val list = List(1,2,3,4,5)
+    val length = foldRight(list, 0)((_,b) => b + 1)
+    println(length)
+  }
 }
