@@ -108,12 +108,21 @@ object List { // `List` companion object. Contains functions for creating and wo
 
 object Runner {
   def main(args: Array[String]): Unit = {
+    val list = List(1,2,3,4,5)
+
     //EXERCISE 3.8
     println(foldRight(List(1,2,3), Nil:List[Int])(Cons(_,_)))
 
     //EXERCISE 3.9
-    val list = List(1,2,3,4,5)
+    println("Length: "+list)
     println(List.length(list))
+
+    //EXERCISE 3.11
+    println("Sum: "+list)
+    println(List.foldLeft(list, 0)((a,b) => a + b))
+    println("Product: "+list)
+    println(List.foldLeft(list, 1)((a,b) => a * b))
+    println("Length: "+list)
     println(List.foldLeft(list, 0)((_,b) => b + 1))
 
 
