@@ -81,7 +81,17 @@ object List { // `List` companion object. Contains functions for creating and wo
     }
   }
 
-  def init[A](l: List[A]): List[A] = ???
+  def init[A](l: List[A]): List[A] = {
+    @annotation.tailrec
+    def go (given: List[A], built: List[A]): List[A] = {
+      given match {
+        case Cons(_, t) if t == Nil => built
+        case Cons(h, t) => go(t, Cons(h, built))
+      }
+    }
+
+    go(l, Nil)
+  }
 
   def length[A](l: List[A]): Int = ???
 
