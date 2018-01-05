@@ -1,7 +1,9 @@
 package fpinscala.errorhandling
 
 
-import scala.{Option => _, Some => _, Either => _, _} // hide std library `Option`, `Some` and `Either`, since we are writing our own in this chapter
+import fpinscala.datastructures.Cons
+
+import scala.{Either => _, Option => _, Some => _, _} // hide std library `Option`, `Some` and `Either`, since we are writing our own in this chapter
 
 sealed trait Option[+A] {
   def map[B](f: A => B): Option[B] = {
@@ -68,7 +70,12 @@ object Option {
     a.flatMap(a => b.map(b => f(a,b)))
   }
 
-  def sequence[A](a: List[Option[A]]): Option[List[A]] = ???
+  def sequence[A](a: List[Option[A]]): Option[List[A]] = {
+    a match {
+      case Cons(Some(h), t) => Some()
+      case
+    }
+  }
 
   def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = ???
 }
